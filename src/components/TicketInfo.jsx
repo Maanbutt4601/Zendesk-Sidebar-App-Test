@@ -6,21 +6,44 @@ const TicketInfo = ({ ticket }) => {
     return text.length > maxLength ? text.substring(0, maxLength) + '...' : text
   }
 
+  const getPriorityFromSubject = (subject) => {
+    if (!subject) return 'normal'
+    const urgent = /urgent|emergency|critical|asap|immediate/i
+    const high = /high|important|priority/i
+    
+    if (urgent.test(subject)) return 'urgent'
+    if (high.test(subject)) return 'high'
+    return 'normal'
+  }
+
+  const priority = getPriorityFromSubject(ticket.subject)
+  const priorityColors = {
+    urgent: 'error',
+    high: 'warning', 
+    normal: 'success'
+  }
+
   return (
-    <section className="ticket-info">
-      <h2>Ticket Information</h2>
+    <section className="section-card fade-in">
+      <div className="section-header">
+        <div className="section-icon">🎫</div>
+        <h2 className="section-title">Ticket Information</h2>
+        <div className={`status-indicator ${priorityColors[priority]}`}>
+          {priority} priority
+        </div>
+      </div>
       <div className="info-grid">
         <div className="info-item">
-          <label>Email:</label>
-          <span>{ticket.requesterEmail || 'N/A'}</span>
+          <label className="info-label">Requester Email</label>
+          <span className="info-value">{ticket.requesterEmail || 'N/A'}</span>
         </div>
         <div className="info-item">
-          <label>Subject:</label>
-          <span>{truncateText(ticket.subject) || 'N/A'}</span>
+          <label className="info-label">Subject</label>
+          <span className="info-value">{truncateText(ticket.subject, 120) || 'N/A'}</span>
         </div>
         <div className="info-item">
-          <label>Description:</label>
-          <span>{truncateText(ticket.description, 150) || 'N/A'}</span>
+          <label className="info-label">Description</label>
+          <span className="info-value truncated">{ticket.description || 'N/A'}</span>
         </div>
       </div>
     </section>
