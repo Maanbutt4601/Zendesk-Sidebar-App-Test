@@ -1,0 +1,234 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+  background-color: #f8f9fa;
+}
+
+.app {
+  max-width: 100%;
+  padding: 16px;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e1e5e9;
+}
+
+.app-header h1 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2f3941;
+}
+
+.refresh-button, .retry-button, .regenerate-button, .copy-button {
+  background-color: #007b84;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.refresh-button:hover, .retry-button:hover, .regenerate-button:hover, .copy-button:hover {
+  background-color: #005f66;
+}
+
+.app-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ticket-info, .customer-info, .recent-posts, .reply-draft {
+  background: white;
+  border: 1px solid #e1e5e9;
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.ticket-info h2, .customer-info h2, .recent-posts h2, .reply-draft h2 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2f3941;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #f1f3f4;
+  padding-bottom: 8px;
+}
+
+.info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-item label {
+  font-weight: 500;
+  color: #5f6368;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-item span {
+  color: #2f3941;
+  word-wrap: break-word;
+}
+
+.info-item a {
+  color: #007b84;
+  text-decoration: none;
+}
+
+.info-item a:hover {
+  text-decoration: underline;
+}
+
+.posts-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.post-item {
+  padding: 8px 12px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  border-left: 3px solid #007b84;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.reply-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.tone-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tone-selector label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #5f6368;
+}
+
+.tone-select {
+  padding: 4px 8px;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  font-size: 12px;
+  background-color: white;
+}
+
+.reply-textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.5;
+  resize: vertical;
+  margin-bottom: 12px;
+}
+
+.reply-textarea:focus {
+  outline: none;
+  border-color: #007b84;
+  box-shadow: 0 0 0 2px rgba(0, 123, 132, 0.1);
+}
+
+.reply-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #007b84;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 8px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-container {
+  background-color: #fef7f0;
+  border: 1px solid #ffd8b8;
+  border-radius: 4px;
+  padding: 12px;
+  text-align: center;
+}
+
+.error-message {
+  color: #b85c00;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.no-customer {
+  background-color: #f0f4ff;
+  border: 1px solid #b8d4ff;
+  border-radius: 4px;
+  padding: 12px;
+  text-align: center;
+  color: #1a73e8;
+  font-size: 13px;
+}
+
+@media (max-width: 320px) {
+  .app {
+    padding: 12px;
+  }
+  
+  .app-header {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+  }
+  
+  .reply-actions {
+    flex-direction: column;
+  }
+}

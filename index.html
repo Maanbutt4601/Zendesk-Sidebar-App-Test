@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZenYC Public API Mini - Development</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    
+    <!-- Mock ZAF Client for development -->
+    <script>
+      window.ZAFClient = {
+        init: () => ({
+          get: (keys) => {
+            // Mock ticket data for development
+            const mockData = {
+              'ticket.requester.email': 'Shanna@melissa.tv',
+              'ticket.subject': 'Account Access Issue - Development Test',
+              'ticket.description': 'I am having trouble accessing my account since yesterday. Please help me resolve this issue as soon as possible.'
+            }
+            return Promise.resolve(mockData)
+          }
+        })
+      }
+    </script>
+    
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
