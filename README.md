@@ -7,3 +7,7 @@ A React-based Zendesk sidebar application that integrates with JSONPlaceholder A
 1. **Install dependencies:**
    ```bash
    pnpm install
+
+1. **Start Server:**
+   ```bash
+   pnpm dev
