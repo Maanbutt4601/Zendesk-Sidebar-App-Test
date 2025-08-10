@@ -1,30 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ZenYC Public API Mini - Development</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    
-    <!-- Mock ZAF Client for development -->
-    <script>
-      window.ZAFClient = {
-        init: () => ({
-          get: (keys) => {
-            // Mock ticket data for development
-            const mockData = {
-              'ticket.requester.email': 'Shanna@melissa.tv',
-              'ticket.subject': 'Account Access Issue - Development Test',
-              'ticket.description': 'I am having trouble accessing my account since yesterday. Please help me resolve this issue as soon as possible.'
-            }
-            return Promise.resolve(mockData)
-          }
-        })
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZenYC Public API Mini - Development</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <!-- Mock ZAF Client for development -->
+  <script>
+    window.testScenarios = {
+      'Sincere@april.biz': {
+        subject: 'Enterprise Account Setup Issues',
+        description: 'Our team is having trouble setting up user accounts for our enterprise deployment. We need this resolved before our Monday go-live date.'
+      },
+      'Shanna@melissa.tv': {
+        subject: 'URGENT: API Rate Limits Exceeded',
+        description: 'Our application is receiving 429 errors from your API. This is critical and affecting our production environment immediately!'
+      },
+      'Nathan@yesenia.net': {
+        subject: 'Thank you for the excellent support!',
+        description: 'I just wanted to express my appreciation for the quick resolution of my previous ticket. Your team went above and beyond to help us implement the new features. Outstanding service!'
+      },
+      'Julianne.OConner@kory.org': {
+        subject: 'Extremely disappointed with service quality',
+        description: 'This is the third time I am contacting you about the same issue. I am very frustrated and disappointed with the lack of response and poor service quality.'
+      },
+      'Lucio_Hettinger@annie.ca': {
+        subject: 'How do I configure SSL certificates?',
+        description: 'We are trying to configure SSL certificates for our domain but the documentation is unclear. Can you help me understand the proper setup process?'
+      },
+      'Karley_Dach@jasper.info': {
+        subject: 'Feature Request: Dashboard Customization',
+        description: 'Would it be possible to add custom dashboard widgets? This would really help our team monitor specific metrics more effectively.'
       }
-    </script>
-    
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+    }
+
+    window.ZAFClient = {
+      init: () => ({
+        get: (keys) => {
+          const currentEmail = window.currentTestEmail || 'Sincere@april.biz'
+          const scenario = window.testScenarios[currentEmail] || window.testScenarios['Sincere@april.biz']
+
+          return Promise.resolve({
+            'ticket.requester.email': currentEmail,
+            'ticket.subject': scenario.subject,
+            'ticket.description': scenario.description
+          })
+        }
+      })
+    }
+
+    window.changeTestEmail = (email) => {
+      window.currentTestEmail = email
+      // Trigger app refresh
+      window.dispatchEvent(new CustomEvent('testEmailChanged'))
+    }
+  </script>
+
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
 </html>

@@ -55,16 +55,7 @@ const ReplyDraft = ({ ticket, customer, posts }) => {
         <h2 className="section-title">AI Reply Assistant</h2>
       </div>
       
-      <div className="confidence-indicator">
-        <span>Confidence Score:</span>
-        <div className="confidence-bar">
-          <div 
-            className="confidence-fill" 
-            style={{ width: `${confidence}%` }}
-          />
-        </div>
-        <span>{confidence}%</span>
-      </div>
+      
       
       <div className="reply-header">
         <div className="tone-controls">
