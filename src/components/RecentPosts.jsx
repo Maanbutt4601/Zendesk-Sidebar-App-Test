@@ -1,5 +1,5 @@
 import React from 'react'
-import LoadingSkeleton from './LoadingSkeleton'
+import LoadingSkeleton from './LoadingSpinner'
 
 const RecentPosts = ({ posts, loading }) => {
   if (loading) {
